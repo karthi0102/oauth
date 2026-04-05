@@ -3,3 +3,5 @@ keys/
 *.sqlite
 bin/
 .env
+auth.db-shm
+auth.db-wal
