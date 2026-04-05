@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Auth Server</title>
+    <style>
+        body { font-family: sans-serif; max-width: 400px; margin: 2rem auto; padding: 1rem; }
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.5rem; }
+        input[type="text"], input[type="email"], input[type="password"] { width: 100%; padding: 0.5rem; }
+        button { padding: 0.5rem 1rem; cursor: pointer; }
+        .error { color: red; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <h1>Register</h1>
+    {{if .Error}}
+        <div class="error">{{.Error}}</div>
+    {{end}}
+    <form method="POST" action="/register">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+    <p>Already have an account? <a href="/login">Log in here</a>.</p>
+</body>
+</html>

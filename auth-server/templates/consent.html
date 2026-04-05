@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authorize App</title>
+    <style>
+        body { font-family: sans-serif; max-width: 400px; margin: 2rem auto; padding: 1rem; }
+        .scopes { list-style: none; padding: 0; }
+        .scopes li { background: #f0f0f0; margin-bottom: 0.5rem; padding: 0.5rem; border-radius: 4px; }
+        .btn { padding: 0.5rem 1rem; cursor: pointer; margin-right: 0.5rem; }
+        .btn-approve { background: #4caf50; color: white; border: none; }
+        .btn-deny { background: #f44336; color: white; border: none; }
+    </style>
+</head>
+<body>
+    <h1>Authorize App</h1>
+    <p><strong>{{.ClientName}}</strong> wants to access your account.</p>
+    <p>It is requesting the following permissions:</p>
+    <ul class="scopes">
+        {{range .Scopes}}
+            <li>{{.}}</li>
+        {{end}}
+    </ul>
+    
+    <form method="POST" action="/authorize/consent">
+        <!-- Hidden fields for the original request parameters -->
+        <input type="hidden" name="client_id" value="{{.ClientID}}">
+        <input type="hidden" name="redirect_uri" value="{{.RedirectURI}}">
+        <input type="hidden" name="scope" value="{{.ScopeRaw}}">
+        <input type="hidden" name="state" value="{{.State}}">
+        <input type="hidden" name="code_challenge" value="{{.CodeChallenge}}">
+        <input type="hidden" name="code_challenge_method" value="{{.CodeChallengeMethod}}">
+
+        <button type="submit" name="decision" value="approve" class="btn btn-approve">Approve</button>
+        <button type="submit" name="decision" value="deny" class="btn btn-deny">Deny</button>
+    </form>
+</body>
+</html>

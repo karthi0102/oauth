@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OAuth From Scratch - Client App</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+        .btn { padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Client App</h1>
+    {{if .IsLoggedIn}}
+        <p>You are logged in.</p>
+        <a href="/dashboard" class="btn">Go to Dashboard</a>
+        <a href="/logout" style="margin-left: 10px;">Logout</a>
+    {{else}}
+        <p>Please login to continue.</p>
+        <a href="/login" class="btn">Login via Auth Server</a>
+    {{end}}
+</body>
+</html>
